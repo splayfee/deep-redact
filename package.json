@@ -16,6 +16,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist --clean --tsconfig tsconfig.tsup.json",
+    "prepublishOnly": "pnpm build",
     "fix": "pnpm lint --fix && pnpm format",
     "format": "prettier --write .",
     "lint": "eslint .",
