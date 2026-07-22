@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install *)",
+      "Bash(pnpm type-check *)",
+      "Bash(pnpm lint *)",
+      "Bash(npm view *)",
+      "Bash(pnpm test *)",
+      "WebSearch",
+      "WebFetch(domain:oxc.rs)",
+      "Bash(pnpm add *)",
+      "Bash(grep -iA3 -E \"serialize|restore|censor|remove|returns\")",
+      "Bash(grep -iA8 \"serialize.*false\" node_modules/fast-redact/readme.md)",
+      "Bash(grep -iA5 \"restore\" node_modules/fast-redact/readme.md)",
+      "Bash(pnpm bench *)",
+      "Bash(grep -vE \"^\\\\s*$\")",
+      "Bash(pnpm format *)",
+      "Bash(pnpm build *)",
+      "Bash(aws --version)",
+      "Bash(aws sts *)",
+      "Bash(grep -iE 'scope-ml|platform|fleet|^[0-9]+$|None|error')",
+      "Bash(python3 - /tmp/claude-1000/-home-dlatour-GitRoot-edium-redact-regex/27aefc5b-f300-41c0-92eb-38c1af27f053/scratchpad/iot.jsonl)",
+      "Bash(aws logs *)",
+      "Bash(python3 -c 'import sys,json,re *)",
+      "Bash(python3 *)",
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(node *)",
+      "Bash(npx vitest *)",
+      "Bash(npx eslint *)",
+      "Bash(echo \"=== exit: $? ===\")",
+      "Bash(npx tsc *)",
+      "Bash(grep -v ':0$')",
+      "Bash(mv /home/dlatour/GitRoot/edium/redact-regex /home/dlatour/GitRoot/edium/deep-redact)",
+      "Read(//home/dlatour/GitRoot/edium/**)",
+      "Bash(git -C /home/dlatour/GitRoot/edium/deep-redact status --short)"
+    ]
+  }
+}

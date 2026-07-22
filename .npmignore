@@ -1,0 +1,16 @@
+.idea
+.history
+.nyc_output
+.scannerwork
+.vscode
+coverage
+node_modules
+src
+tests
+tsconfig.json
+tsconfig.eslint.json
+tsconfig.tsup.json
+vitest.config.ts
+eslint.config.mjs
+.editorconfig
+.prettierrc.json

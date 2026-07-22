@@ -1,0 +1,78 @@
+{
+  "name": "@edium/deep-redact",
+  "version": "1.0.0",
+  "description": "Isomorphic, configurable deep redaction of sensitive object keys via a regex match list. Works in Node and the browser, with TypeScript or JavaScript.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/splayfee/deep-redact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/splayfee/deep-redact/issues",
+    "email": "david@edium.com"
+  },
+  "docs": {
+    "url": "https://github.com/splayfee/deep-redact/blob/master/README.md"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist --clean --tsconfig tsconfig.tsup.json",
+    "fix": "pnpm lint --fix && pnpm format",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "bench": "vitest bench --run",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "type-check": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "redact",
+    "redaction",
+    "sanitize",
+    "secrets",
+    "logging",
+    "logger",
+    "regex",
+    "security",
+    "pii",
+    "isomorphic"
+  ],
+  "homepage": "https://github.com/splayfee/deep-redact",
+  "author": "David LaTour <david@edium.com>",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.1.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "fast-redact": "^3.5.0",
+    "prettier": "^3.9.6",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  },
+  "packageManager": "pnpm@11.16.0+sha512.b767e9a98fc87aec0f42daefcd0e84941c2cdb45d73c4e1e68860fb2bdfdbe032ab592105479e5e05c237f740c8a5ffdbbb52385797ddc2296745a1bbb883e8d"
+}
