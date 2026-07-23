@@ -1,17 +1,17 @@
 {
-  "name": "@edium/deep-redact",
+  "name": "@edium/auto-redact",
   "version": "1.0.0",
-  "description": "Isomorphic, configurable deep redaction of sensitive object keys via a regex match list. Works in Node and the browser, with TypeScript or JavaScript.",
+  "description": "Deep, configurable redaction of secrets and PII from objects, arrays, and strings - by key, value pattern, or path. Isomorphic (Node + browser), zero dependencies, TypeScript-first.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/splayfee/deep-redact.git"
+    "url": "https://github.com/splayfee/auto-redact.git"
   },
   "bugs": {
-    "url": "https://github.com/splayfee/deep-redact/issues",
+    "url": "https://github.com/splayfee/auto-redact/issues",
     "email": "david@edium.com"
   },
   "docs": {
-    "url": "https://github.com/splayfee/deep-redact/blob/master/README.md"
+    "url": "https://github.com/splayfee/auto-redact/blob/master/README.md"
   },
   "license": "MIT",
   "scripts": {
@@ -19,6 +19,7 @@
     "prepublishOnly": "pnpm build",
     "fix": "pnpm lint --fix && pnpm format",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "bench": "vitest bench --run",
     "test": "vitest run --coverage",
@@ -51,16 +52,25 @@
   "keywords": [
     "redact",
     "redaction",
+    "deep-redact",
+    "deep-redaction",
     "sanitize",
+    "sanitization",
     "secrets",
+    "pii",
+    "gdpr",
+    "mask",
+    "masking",
     "logging",
     "logger",
-    "regex",
+    "console",
     "security",
-    "pii",
-    "isomorphic"
+    "regex",
+    "typescript",
+    "isomorphic",
+    "json"
   ],
-  "homepage": "https://github.com/splayfee/deep-redact",
+  "homepage": "https://github.com/splayfee/auto-redact",
   "author": "David LaTour <david@edium.com>",
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -29,7 +29,7 @@ export function assertCompilable(pattern: string): void {
     void new RegExp(pattern);
   } catch (error) {
     throw new SyntaxError(
-      `deep-redact: pattern "${pattern}" is not a valid regular expression: ${(error as Error).message}`,
+      `auto-redact: pattern "${pattern}" is not a valid regular expression: ${(error as Error).message}`,
       { cause: error }
     );
   }
@@ -41,13 +41,13 @@ export function assertCompilable(pattern: string): void {
  */
 export function normalizeKeyPatterns(patterns: readonly string[]): string[] {
   if (!Array.isArray(patterns)) {
-    throw new TypeError('deep-redact: patterns must be an array of strings.');
+    throw new TypeError('auto-redact: patterns must be an array of strings.');
   }
   const result: string[] = [];
   for (const pattern of patterns) {
     if (typeof pattern !== 'string' || pattern.length === 0) {
       throw new TypeError(
-        `deep-redact: each pattern must be a non-empty string (received ${JSON.stringify(pattern)}).`
+        `auto-redact: each pattern must be a non-empty string (received ${JSON.stringify(pattern)}).`
       );
     }
     assertCompilable(pattern);
@@ -107,7 +107,7 @@ export function compileValueRegex(
   caseSensitive: boolean
 ): RegExp | null {
   if (!Array.isArray(patterns)) {
-    throw new TypeError('deep-redact: valuePatterns must be an array of strings or RegExps.');
+    throw new TypeError('auto-redact: valuePatterns must be an array of strings or RegExps.');
   }
   const sources: string[] = [];
   for (const pattern of patterns) {
@@ -117,7 +117,7 @@ export function compileValueRegex(
     }
     if (typeof pattern !== 'string' || pattern.length === 0) {
       throw new TypeError(
-        `deep-redact: each value pattern must be a non-empty string or RegExp (received ${JSON.stringify(pattern)}).`
+        `auto-redact: each value pattern must be a non-empty string or RegExp (received ${JSON.stringify(pattern)}).`
       );
     }
     assertCompilable(pattern);
@@ -142,12 +142,12 @@ export function compileValueRegex(
  */
 export function validatePaths(paths: readonly string[]): readonly string[] {
   if (!Array.isArray(paths)) {
-    throw new TypeError('deep-redact: paths must be an array of strings.');
+    throw new TypeError('auto-redact: paths must be an array of strings.');
   }
   for (const path of paths) {
     if (typeof path !== 'string' || path.length === 0) {
       throw new TypeError(
-        `deep-redact: each path must be a non-empty string (received ${JSON.stringify(path)}).`
+        `auto-redact: each path must be a non-empty string (received ${JSON.stringify(path)}).`
       );
     }
   }

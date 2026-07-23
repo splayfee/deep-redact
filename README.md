@@ -1,4 +1,7 @@
-# @edium/deep-redact
+# @edium/auto-redact
+
+[![CI](https://github.com/splayfee/auto-redact/actions/workflows/ci.yml/badge.svg)](https://github.com/splayfee/auto-redact/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@edium/auto-redact.svg)](https://www.npmjs.com/package/@edium/auto-redact)
 
 Isomorphic, configurable **deep redaction** for logs and payloads. Censors
 secrets by **key name** (anywhere, at any depth), by **value pattern** (secrets
@@ -21,7 +24,7 @@ rewire `console.*` so a secret can never reach the console in the first place.
 
 Most redactors make you enumerate exact **paths** up front (e.g. `fast-redact`,
 the engine inside pino). That is blazing fast but assumes you already know where
-every secret lives. `deep-redact` is built for the opposite, common reality:
+every secret lives. `auto-redact` is built for the opposite, common reality:
 **heterogeneous data whose shape you don't control** - request bodies, MQTT
 messages, job payloads, third-party errors.
 
@@ -57,11 +60,11 @@ more capable default, and it matches or beats the speed when you need it.
 ## Installation
 
 ```bash
-pnpm add @edium/deep-redact
+pnpm add @edium/auto-redact
 # or
-npm install @edium/deep-redact
+npm install @edium/auto-redact
 # or
-yarn add @edium/deep-redact
+yarn add @edium/auto-redact
 ```
 
 ---
@@ -71,7 +74,7 @@ yarn add @edium/deep-redact
 ### TypeScript / ESM
 
 ```ts
-import { redact } from '@edium/deep-redact';
+import { redact } from '@edium/auto-redact';
 
 redact({
   user: 'ada',
@@ -88,7 +91,7 @@ redact({
 ### JavaScript / CommonJS
 
 ```js
-const { redact } = require('@edium/deep-redact');
+const { redact } = require('@edium/auto-redact');
 
 redact({ authorization: 'Bearer abc', ok: true });
 // { authorization: '[redacted]', ok: true }
@@ -104,14 +107,14 @@ maximum-speed hot path.
 **1. The easy way** - redact anything, immutably, with sensible defaults:
 
 ```ts
-import { redact } from '@edium/deep-redact';
+import { redact } from '@edium/auto-redact';
 redact(anyPayload); // censored deep copy; finds password/token/apiKey/cookie/... anywhere
 ```
 
 **2. Protect the console** - a last line of defense so secrets never print:
 
 ```ts
-import { enableConsoleRedaction } from '@edium/deep-redact';
+import { enableConsoleRedaction } from '@edium/auto-redact';
 enableConsoleRedaction(); // every console.* call is redacted with the default patterns
 console.log({ user: 'ada', password: 'hunter2' }); // -> { user: 'ada', password: '[redacted]' }
 ```
@@ -196,7 +199,7 @@ Create a `Redactor` when you want your own patterns or options, then add,
 remove, or replace patterns at any time. All mutating methods are chainable.
 
 ```ts
-import { Redactor, createRedactor } from '@edium/deep-redact';
+import { Redactor, createRedactor } from '@edium/auto-redact';
 
 // Start from the defaults and extend them.
 const redactor = new Redactor();
@@ -317,7 +320,7 @@ fastest.redact(record);
 ```
 
 > **No `restore()` needed.** `fast-redact` mutates and hands you a `restore()` to
-> undo it; deep-redact is **immutable by default**, so nothing is touched and
+> undo it; auto-redact is **immutable by default**, so nothing is touched and
 > there is nothing to restore. Need speed _and_ the original? Use registered
 > `paths` without `mutate` (still fast, returns a copy). Use `mutate` only when
 > you are done with the original - which also avoids the window where async code
@@ -361,7 +364,7 @@ Route every `console.*` call through redaction so a matched key can never be
 printed. Useful as a last line of defense in an app entrypoint.
 
 ```ts
-import { enableConsoleRedaction, disableConsoleRedaction } from '@edium/deep-redact';
+import { enableConsoleRedaction, disableConsoleRedaction } from '@edium/auto-redact';
 
 enableConsoleRedaction();
 
@@ -484,10 +487,10 @@ import {
   DEFAULT_SENSITIVE_KEY_PATTERNS,
   CIRCULAR_MARKER, // '[circular]'
   TRUNCATED_MARKER // '[truncated]'
-} from '@edium/deep-redact';
+} from '@edium/auto-redact';
 
 // RedactionReason is an enum (a runtime value), so it is a value export.
-import { RedactionReason } from '@edium/deep-redact';
+import { RedactionReason } from '@edium/auto-redact';
 
 import type {
   RedactorOptions,
@@ -496,7 +499,7 @@ import type {
   RedactionContext,
   ConsoleRedactionOptions,
   ConsoleMethodName
-} from '@edium/deep-redact';
+} from '@edium/auto-redact';
 ```
 
 ---

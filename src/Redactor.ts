@@ -38,13 +38,13 @@ export class Redactor implements RedactionEngine {
   public constructor(options: RedactorOptions = {}) {
     const replacement = options.replacement ?? DEFAULT_REDACTED;
     if (typeof replacement !== 'string' && typeof replacement !== 'function') {
-      throw new TypeError('deep-redact: replacement must be a string or a function.');
+      throw new TypeError('auto-redact: replacement must be a string or a function.');
     }
 
     const maxDepth = options.maxDepth ?? DEFAULT_MAX_DEPTH;
     if (!Number.isInteger(maxDepth) || maxDepth < 0) {
       throw new RangeError(
-        `deep-redact: maxDepth must be a non-negative integer (received ${String(maxDepth)}).`
+        `auto-redact: maxDepth must be a non-negative integer (received ${String(maxDepth)}).`
       );
     }
 

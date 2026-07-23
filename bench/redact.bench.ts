@@ -4,7 +4,7 @@ import fastRedact from 'fast-redact';
 import { Redactor } from '../src/Redactor';
 
 /**
- * The paths fast-redact must be told about up front. deep-redact needs no
+ * The paths fast-redact must be told about up front. auto-redact needs no
  * paths - it matches these key names anywhere by its default patterns.
  */
 const SENSITIVE_PATHS = [
@@ -83,16 +83,16 @@ describe('small record -> object', () => {
     fr(small);
     fr.restore(small);
   });
-  bench('deep-redact (all)', () => {
+  bench('auto-redact (all)', () => {
     rrAll.redact(small);
   });
-  bench('deep-redact (registered paths)', () => {
+  bench('auto-redact (registered paths)', () => {
     rrPaths.redact(small);
   });
-  bench('deep-redact (mutate)', () => {
+  bench('auto-redact (mutate)', () => {
     rrMutate.redact(smallD);
   });
-  bench('deep-redact (compile)', () => {
+  bench('auto-redact (compile)', () => {
     rrCompiled.redact(smallD);
   });
 });
@@ -105,16 +105,16 @@ describe('large record, few secrets -> object', () => {
     fr(large);
     fr.restore(large);
   });
-  bench('deep-redact (all)', () => {
+  bench('auto-redact (all)', () => {
     rrAll.redact(large);
   });
-  bench('deep-redact (registered paths)', () => {
+  bench('auto-redact (registered paths)', () => {
     rrPaths.redact(large);
   });
-  bench('deep-redact (mutate)', () => {
+  bench('auto-redact (mutate)', () => {
     rrMutate.redact(largeD);
   });
-  bench('deep-redact (compile)', () => {
+  bench('auto-redact (compile)', () => {
     rrCompiled.redact(largeD);
   });
 });
@@ -127,16 +127,16 @@ describe('several secrets at depth 7 -> object', () => {
     frDeep(deep);
     frDeep.restore(deep);
   });
-  bench('deep-redact (all)', () => {
+  bench('auto-redact (all)', () => {
     rrAll.redact(deep);
   });
-  bench('deep-redact (registered paths)', () => {
+  bench('auto-redact (registered paths)', () => {
     rrDeepPaths.redact(deep);
   });
-  bench('deep-redact (mutate)', () => {
+  bench('auto-redact (mutate)', () => {
     rrDeepMutate.redact(deepD);
   });
-  bench('deep-redact (compile)', () => {
+  bench('auto-redact (compile)', () => {
     rrDeepCompiled.redact(deepD);
   });
 });
